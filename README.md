@@ -9,4 +9,5 @@ Now check the checkbox; this will cause a low-priority background thread to run 
 is clicked. Because it's on another thread, it should have no impact to the application - the work
 should continue in the background and the foreground should remain responsive, with the button
 responding to clicks and the counter incrementing. However, what actually happens is that the GUI
-entirely freezes until the thread completes, and any button clicks are lost.
+entirely freezes until the thread completes, and any button clicks are lost. Also, the counter doesn't
+update in the UI until the thread completes.
