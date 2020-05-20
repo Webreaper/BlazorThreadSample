@@ -1,0 +1,43 @@
+﻿@page "/counter"
+@using System.Threading
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<p>Enable Background Thread: <input type="checkbox" @bind="@EnableThread" /></p>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+    public bool EnableThread { get; set; }
+
+    private void IncrementCount()
+    {
+        if (EnableThread)
+        {
+            var metathread = new Thread(new ThreadStart(() => { DoWork(); }));
+            metathread.Name = "MetaDataThread";
+            metathread.IsBackground = true;
+            metathread.Priority = ThreadPriority.Lowest;
+            metathread.Start();
+        }
+
+        currentCount++;
+    }
+
+    private void DoWork()
+    {
+        // Loop through 200 iterations of 'work'
+        int count = 0;
+        while (count++ < 200)
+        {
+            // Yield briefly for each iteration...
+            //Thread.Sleep(100);
+
+            // then work hard (tight loop) for 5 seconds
+            var end = DateTime.Now + TimeSpan.FromSeconds(2);
+            while (DateTime.Now < end) ;
+        }
+    }
+}
