@@ -11,3 +11,5 @@ should continue in the background and the foreground should remain responsive, w
 responding to clicks and the counter incrementing. However, what actually happens is that the GUI
 entirely freezes until the thread completes, and any button clicks are lost. Also, the counter doesn't
 update in the UI until the thread completes.
+
+![alt text](https://github.com/Webreaper/BlazorThreadSample/blob/master/BlazorThreadSample.gif "Application in use")
